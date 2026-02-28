@@ -36,3 +36,6 @@ Variable : Description
 
 7. DockerHub Image
 https://hub.docker.com/r/aaminafazlullah/weather-app
+
+<!----pipeline verified--->
+
