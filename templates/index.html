@@ -3,25 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <title>Weather App</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 400px;
+    }
+    h1 { margin-bottom: 25px; color: #333; font-size: 28px; }
+    input {
+      padding: 12px;
+      width: 70%;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      margin-bottom: 15px;
+    }
+    input:focus { border-color: #a18cd1; }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background: #a18cd1;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+    button:hover { background: #7c5cbf; }
+    .result {
+      margin-top: 30px;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .result h2 { color: #333; margin-bottom: 15px; }
+    .result p { color: #555; margin: 8px 0; font-size: 16px; }
+    .error { color: red; margin-top: 20px; font-size: 15px; }
+  </style>
 </head>
 <body>
-  <h1>🌤 Weather App</h1>
-  <form method="POST">
-    <input type="text" name="city" placeholder="Enter city name" required>
-    <button type="submit">Search</button>
-  </form>
+  <div class="container">
+    <h1>🌤 Weather App</h1>
+    <form method="POST">
+      <input type="text" name="city" placeholder="Enter city name" required>
+      <button type="submit">Search</button>
+    </form>
 
-  {% if weather %}
-  <div>
-    <h2>{{ weather.city }}</h2>
-    <p>🌡 Temperature: {{ weather.temp }}°C</p>
-    <p>💧 Humidity: {{ weather.humidity }}%</p>
-    <p>🌥 Condition: {{ weather.description }}</p>
+    {% if weather %}
+    <div class="result">
+      <h2>{{ weather.city }}</h2>
+      <p>🌡 Temperature: {{ weather.temp }}°C</p>
+      <p>💧 Humidity: {{ weather.humidity }}%</p>
+      <p>🌥 Condition: {{ weather.description }}</p>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
   </div>
-  {% endif %}
-
-  {% if error %}
-  <p>{{ error }}</p>
-  {% endif %}
 </body>
 </html>
